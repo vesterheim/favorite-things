@@ -7,3 +7,7 @@ application/cache/*
 application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
+
+# Don't share these files either. 
+application/config/development/*
+application/config/production/*
