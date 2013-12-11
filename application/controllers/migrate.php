@@ -35,7 +35,7 @@ class Migrate extends CI_Controller {
     {
     	echo "migrate current 	Run up to current migration specified in config" . PHP_EOL;
     	echo "migrate latest 		Run all migrations" . PHP_EOL;
-    	echo "migrate refresh 	Reset and re-run all migrations" . PHP_EOL;
+ //   	echo "migrate refresh 	Reset and re-run all migrations" . PHP_EOL;
     	echo "migrate reset 		Rollback all database migrations" . PHP_EOL;
     	echo "migrate version 	Rollback or step forward to a specified version" . PHP_EOL;   	
     }
@@ -67,7 +67,10 @@ class Migrate extends CI_Controller {
      * Same as running reset() and latest() but simply calling both
      * methods within this method produced a "Cannot redeclare class"
      * error from the migration file. Oh well.
+     * @todo Still get "Cannot redeclare class", so fix it.
      */
+    /**
+     * Broken. Does not work except, after a reset.
     public function refresh()
     {
         $this->migration->version(0);
@@ -75,7 +78,8 @@ class Migrate extends CI_Controller {
 
         $this->migration->latest();
         echo $this->migration->error_string() . PHP_EOL;
-    }    
+    }
+     */    
 
 
     /**
