@@ -48,7 +48,7 @@ class Migration_Create_ratings_table extends CI_Migration
                 'type' => 'INT',
                 'constraint' => 10,
                 'unsigned' => TRUE,
-                'null' => FALSE)
+                'null' => TRUE)
         ));
         
         $this->dbforge->add_key('id', TRUE);
