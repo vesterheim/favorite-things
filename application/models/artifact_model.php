@@ -72,4 +72,65 @@ class Artifact_model extends MY_Model
             )
         );
     }
+
+    /**
+      * Get array of Artifact records ordered by rank
+      *
+      * @access public  
+      * @return array Artifact records
+      */
+    public function get_all() 
+    {
+        $data = array();
+
+        $artifacts = $this->artifact_table();
+        $images = $this->image_table();
+        $ratings = $this->rating_table();
+
+        $sql = <<<EOQ
+SELECT  $artifacts.id,
+        $artifacts.name,
+        $artifacts.identifier,
+    (SELECT image
+     FROM $images
+     WHERE artifact_id = $artifacts.id
+     ORDER BY sort_order LIMIT 1) AS image,
+        FIND_IN_SET(AVG($ratings.rating), averages.average_list) AS rank,
+        AVG($ratings.rating) AS average,
+        STDDEV_POP($ratings.rating) AS deviation,
+        SUM($ratings.rating) AS points,
+        COUNT($ratings.rating) AS votes,
+        views
+FROM $artifacts
+LEFT JOIN $ratings
+        ON $artifacts.id = $ratings.artifact_id
+        AND $ratings.status = 1 
+CROSS JOIN
+    (SELECT GROUP_CONCAT(DISTINCT(average) ORDER BY average DESC) AS average_list
+     FROM
+        (SELECT AVG($ratings.rating) AS average
+         FROM $artifacts
+         LEFT JOIN $ratings 
+            ON $artifacts.id = $ratings.artifact_id
+            AND $ratings.status = 1
+     WHERE $artifacts.status = 1
+     GROUP BY $artifacts.id) AS averages) AS averages
+WHERE $artifacts.status = 1
+GROUP BY $artifacts.id
+ORDER BY rank
+EOQ;
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)
+        {
+            foreach ($query->result_array() as $row)
+            {
+                $data[] = $row;
+            }   
+        }   
+        $query->free_result();  
+
+
+        return $data;                   
+    }
+
 }
