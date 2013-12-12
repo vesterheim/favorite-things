@@ -192,6 +192,39 @@ class MY_Model extends CI_Model
 
 
     /**
+     * Getter for the artifacts table
+     * 
+     * @return string      
+     */
+    public function artifact_table()
+    {
+        return $this->_artifact_table;
+    } 
+
+
+    /**
+     * Getter for the images table
+     * 
+     * @return string      
+     */
+    public function image_table()
+    {
+        return $this->_image_table;
+    } 
+
+
+    /**
+     * Getter for the ratings table
+     * 
+     * @return string      
+     */
+    public function rating_table()
+    {
+        return $this->_rating_table;
+    }     
+
+
+    /**
      * Run validation on the passed data
      * Completely lifted from
      * @link http://github.com/jamierumbelow/codeigniter-base-model
