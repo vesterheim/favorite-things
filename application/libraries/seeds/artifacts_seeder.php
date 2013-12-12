@@ -331,17 +331,6 @@ class Artifacts_seeder {
 			),
 			array(
 				'id' => 30,
-				'name' => 'Confirmation Dress',
-				'identifier' => '1995.084.001',
-				'description' => 'This two piece dress features Hardanger embroidery on the insets on the blouse and skirt and on the cuffs on the blouse,.',
-				'date' => '1900-1910',
-				'creator' => 'Unknown',
-				'source' => 'Gift of Jacqueline Moe',
-				'dimensions' => NULL,
-				'status' => 1
-			),
-			array(
-				'id' => 31,
 				'name' => 'Print, Parody of Hardanger Wedding Scene',
 				'identifier' => '1996.016.001',
 				'description' => NULL,
@@ -352,7 +341,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 32,
+				'id' => 31,
 				'name' => 'Painting, Vesterheim',
 				'identifier' => '1997.001.001',
 				'description' => 'Painting done at the time of the restoration of Vesterheim main museum building 1975.',
@@ -363,7 +352,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 33,
+				'id' => 32,
 				'name' => 'Ale Bowl',
 				'identifier' => '1997.070.001',
 				'description' => 'This hand-made ale bowl was given by the donor\'s family to an aunt when she visited Norway after World War II.',
@@ -374,7 +363,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 34,
+				'id' => 33,
 				'name' => 'Trunk',
 				'identifier' => '1997.082.001',
 				'description' => 'The trunk was painted by Hans Glittenberg (1780-1873) who is recognized as one of the rosemaling masters.He developed a distinctive style that is characterized by delicate line work and a limited but pleasing palette.The trunk was brought from Røldal, Norway by Gunnar Överland. He emigrated from Norway in 1908 and settled in Iowa.',
@@ -385,7 +374,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 35,
+				'id' => 34,
 				'name' => 'Knife Sheath',
 				'identifier' => '1998.080.007',
 				'description' => 'This knife sheath is made of bone and features geometric incised designs.',
@@ -396,7 +385,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 36,
+				'id' => 35,
 				'name' => 'Sculpture, Man with Horse and Plow',
 				'identifier' => '2000.028.013',
 				'description' => 'A  realistic depiction of horse with man walking behind single bottom plow.',
@@ -408,7 +397,7 @@ class Artifacts_seeder {
 
 			),
 			array(
-				'id' => 37,
+				'id' => 36,
 				'name' => 'Sami Needle Case',
 				'identifier' => '2000.002.001',
 				'description' => 'This Sami needlecase is made from a hollowed out bone. The soft leather case iin the center of the bone is pulled out by an the flat rondel which is also made of bone.',
@@ -420,7 +409,7 @@ class Artifacts_seeder {
 
 			),
 			array(
-				'id' => 38,
+				'id' => 37,
 				'name' => 'Folk Costume',
 				'identifier' => '2003.042.001',
 				'description' => 'This Aust-Agdar bunad was made in Norway and worn by the donor at many occasions.',
@@ -431,7 +420,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 39,
+				'id' => 38,
 				'name' => 'Violin',
 				'identifier' => '2004.006.001',
 				'description' => 'This violin made by Otinus Busness in 1983.  Busnees started making violins sometime after 1960 during his retirement in Florida.  This violin is made the violin of wood from a trunk (1859)  that his grandparents brought from Kinsarvik.  It is the 12th and last violin which he made.  It was painted by Gary Albrecht in 1983 on the occasion of Busness\'s 90th birthday.',
@@ -442,7 +431,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 40,
+				'id' => 39,
 				'name' => 'Painting,  Anchored at Concarneau',
 				'identifier' => '2008.004.002',
 				'description' => 'This was painted by Jonas Lie when he was in Brittany  in 1929.  Concarneau is a town on the coast of France which is known for its annual August celebration, Fête des Filets Bleus (Festival of the blue nets), which is named after the traditional blue nets of Concarneau\'s fishing fleet.',
@@ -453,7 +442,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 41,
+				'id' => 40,
 				'name' => 'Tapestry',
 				'identifier' => '2010.012.001',
 				'description' => 'This woven tapestry features skiers in various positions.',
@@ -464,7 +453,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 42,
+				'id' => 41,
 				'name' => 'Mittens',
 				'identifier' => '2012.030.001',
 				'description' => 'This extra large pair of mittens was hand-knit with white wool yarn.  These mittens would have been felted to make them smaller and create a tight, dense weave. Each mitten has two thumbs, on opposites sides. This type of mitten was traditionally worn by fishermen.  The advantage having having two thumbs was that the mitten could be turned over when one side wore out.',
@@ -475,7 +464,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 43,
+				'id' => 42,
 				'name' => 'Trunk',
 				'identifier' => '2012.041.001',
 				'description' => 'This trunk was painted in the Hallingdal style by Embrik Bæra.  Bæra was known for his naive portrayals of Biblical and other figures.  The central female figure is Lady Fortuna from Roman mythology. Originally, Fortuna was a major deity, holidng charge of the fates of all humans.  Later in history, she became more of a fertility figure.  She is flanked by a bride and groom. The trunk was brought from Sogndal, Norway, in 1871 by Kari Ylvisaker Ness when she emigrated to Red Wing, MN, with her three young children.',
@@ -486,7 +475,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 44,
+				'id' => 43,
 				'name' => 'Trunk',
 				'identifier' => 'LC0120',
 				'description' => 'This trunk features finely painted Rococo panels that are broken up by embossed and perforated acanthus metal bands.',
@@ -497,7 +486,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 45,
+				'id' => 44,
 				'name' => 'Basket',
 				'identifier' => 'LC1213',
 				'description' => 'This birch root basket has an outflaring body made up of zigzag borders between concentric circles.',
@@ -508,7 +497,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 46,
+				'id' => 45,
 				'name' => 'Butter Mold',
 				'identifier' => 'LC1284',
 				'description' => 'This would have been used for molding butter. The initials on the front indicate that it was owned by a woman. The "E" was the first letter in woman\'s first name; the "O" was the first letter of her father\'s name; the "D" indicated that she was a "datter," or daughter. Had it belonged to a man, the last letter would be "S" for son.',
@@ -519,7 +508,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 47,
+				'id' => 46,
 				'name' => 'Mittens',
 				'identifier' => 'LC1665',
 				'description' => 'These mittens feature eight petal flowers on the  backs and criss-cross with diamond patterns on the palms.',
@@ -530,7 +519,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 48,
+				'id' => 47,
 				'name' => 'Mangle Board',
 				'identifier' => 'LC1745',
 				'description' => 'This mangle board features a board with acanthus carving and a highly stylized kneeling lion for a handle.',
@@ -541,7 +530,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 49,
+				'id' => 48,
 				'name' => 'Folk Costume',
 				'identifier' => 'LC4293',
 				'description' => 'This East Telemark bunad has a floor-length heavily gathered skirt that joins to a brocaded silk bodice above the bust.  The skirt is edged with a velvet band and silk ribbon.  The woven band is done in a pickup pattern in reds and there are pompoms at the ends. The wide belt is tablet-woven. There is a long black sateen apron that is bordered with two bands of richly brocaded silk ribbon and chenille. The long-sleeved black wool jacket, is waist length in the front and rises sharply in the back.  It has a standing collar and is bordered with silk ribbon and lined with red cotton.',
@@ -552,7 +541,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 50,
+				'id' => 49,
 				'name' => 'Bridal Crown',
 				'identifier' => 'LC5632',
 				'description' => 'This bridal crown has a three inch wide circle of cutout geometric and floral designs around the base. Above that are six cutout rondels, each capped with a finial and cross. Between the rondels are extensions with bird-like figures holding spoons. Teardrop shaped metal pieces, embossed or set with glass or enamel, hang from the side and top sections of the crown. In the back, embroidered silk ribbons hang from the bottom section.',
@@ -563,7 +552,7 @@ class Artifacts_seeder {
 				'status' => 1
 			),
 			array(
-				'id' => 51,
+				'id' => 50,
 				'name' => 'Native American Outfit',
 				'identifier' => 'LC7465',
 				'description' => 'Chris Aalgaard, the owner of this outfit, was a Norwegian who immigrated to the Westby Wisconsin area. He was a self-styled frontiersman and a friend to Native Americans.',
