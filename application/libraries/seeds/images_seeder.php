@@ -112,7 +112,7 @@ class Images_seeder {
 			),
 			array(
 				'artifact_id' => 13,
-				'image' => '',
+				'image' => '1982.040.001-ft.jpg',
 				'sort_order' => 10
 			),
 			array(
