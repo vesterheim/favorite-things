@@ -41,5 +41,21 @@ class Image_model extends MY_Model
                 'rules' => 'required|is_natural'
             )
         );
-    }  
+    } 
+
+
+    /**
+     * Exists
+     * Given an image name, see if it is referenced in the 
+     * images table.
+     *
+     * @param string $image
+     * @return boolean 
+     */
+    function exists($image)
+    {
+        $this->db->where('image', $image);
+        $query = $this->db->get($this->table());
+        return (bool) $query->num_rows();
+    }     
 }
