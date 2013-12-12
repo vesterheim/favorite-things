@@ -65,6 +65,28 @@ class MY_Model extends CI_Model
 
 
     /**
+     * Get All
+     * Return all rows as an array.
+     *
+     * @return array 
+     */
+    function get_all()
+    {
+        $data = array();
+        $query = $this->db->get($this->table());
+        if ($query->num_rows() > 0)
+        {
+            foreach ($query->result_array() as $row)
+            {
+                $data[] = $row;
+            }   
+        }   
+        $query->free_result();  
+        return $data;         
+    } 
+
+
+    /**
      * Insert
      * Take data array, optionally valiated it, and insert into 
      * database table. Mainly here to make database seeding easier.
