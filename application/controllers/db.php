@@ -60,11 +60,11 @@ class Db extends CI_Controller
         $this->load->model('rating_model');
         $this->load->library('seeds/ratings_seeder');
         $this->ratings_seeder->run($this->rating_model);
-/*
+
         $this->load->model('image_model');
         $this->load->library('seeds/images_seeder');
         $this->images_seeder->run($this->image_model);
-*/
+
         $this->load->model('artifact_model');
         $this->load->library('seeds/artifacts_seeder');
         $this->artifacts_seeder->run($this->artifact_model);
