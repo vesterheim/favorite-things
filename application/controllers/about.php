@@ -21,6 +21,13 @@ class About extends CI_Controller {
 	 */	
 	public function index()
 	{
+		$data['title'] = 'Help Us Design an Exhibit';
+		$data['subview'] = 'about/index';
+		$data['current_navigation'] = 'about';
+
+		$this->load->view('layouts/master', $data);		
+		
+
 
 	}
 
