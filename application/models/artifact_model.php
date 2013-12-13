@@ -212,4 +212,24 @@ EOQ;
         return $data;                   
     }
 
+
+    /**
+      * Increment views by 1
+      *
+      * @access public
+      * @param int $id   
+      * @return boolean
+      */
+    public function update_views($id) 
+    {
+        if (is_idish($id) === FALSE)
+        {
+            throw new InvalidArgumentException('Artifact_model::update_views() expects an integer for the artifact_id parameter.  Input was: ' . $id);
+        } 
+        
+        $this->db->set('views', 'views+1', FALSE);
+        $this->db->where('id', clean_id($id));
+        $this->db->update($this->artifact_table());                 
+        return (bool) ($this->db->affected_rows() > 0);                    
+    }
 }
