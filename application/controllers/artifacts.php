@@ -15,6 +15,8 @@ class Artifacts extends CI_Controller {
     {
     	parent::__construct();
 
+    	$this->load->model('artifact_model');
+
     	/** 
     	 * Display profiler everywhere save the production
     	 * environment.
@@ -30,7 +32,13 @@ class Artifacts extends CI_Controller {
 	 */	
 	public function index()
 	{
+		$data['artifacts'] = $this->artifact_model->get_all();
 
+		$data['title'] = 'Artifacts';
+		$data['subview'] = 'artifacts/browse';
+		$data['current_navigation'] = 'browse';
+
+		$this->load->view('layouts/master', $data);
 	}
 
 
@@ -42,7 +50,14 @@ class Artifacts extends CI_Controller {
 	 */
 	public function show($id)
 	{
-		
+		$data['artifact'] = $this->artifact_model->get($id);
+		$this->artifact_model->update_views($id);
+
+		$data['title'] = 'Rate ' . $data['artifact']['name'] . ' [' . $data['artifact']['identifier'] . ']';
+		$data['subview'] = 'artifacts/detail';
+		$data['current_navigation'] = 'browse';
+
+		$this->load->view('layouts/master', $data);				
 	}
 
 
