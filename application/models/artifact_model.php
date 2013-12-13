@@ -71,7 +71,86 @@ class Artifact_model extends MY_Model
                 'rules' => 'is_natural'
             )
         );
+
+        $this->load->helper('database');
     }
+
+
+    /**
+      * Get Artifact record by ID
+      *
+      * @access public
+      * @param int $id   
+      * @return array Artifact record
+      */
+    public function get($id) 
+    {
+        if (is_idish($id) === FALSE)
+        {
+            throw new InvalidArgumentException('Artifact_model::get() expects an integer for the $id parameter.  Input was: ' . $id);
+        } 
+
+        $artifacts = $this->artifact_table();
+        $images = $this->image_table();
+        $ratings = $this->rating_table();
+
+$sql = <<<EOQ
+SELECT  $artifacts.id,
+        $artifacts.name,
+        $artifacts.identifier,
+        $artifacts.description,
+        $artifacts.date,
+        $artifacts.creator,
+        $artifacts.source,
+        (SELECT GROUP_CONCAT($images.image ORDER BY $images.sort_order ASC) FROM $images WHERE $images.artifact_id = $artifacts.id) as image,
+        FIND_IN_SET(AVG($ratings.rating), averages.average_list) AS rank,
+        AVG($ratings.rating) AS average,
+        STDDEV_POP($ratings.rating) AS deviation,
+        SUM($ratings.rating) AS points,
+        COUNT($ratings.rating) AS votes,
+        $artifacts.views
+FROM $artifacts
+LEFT JOIN $ratings 
+        ON $artifacts.id = $ratings.artifact_id
+        AND $ratings.status = 1 
+CROSS JOIN
+    (SELECT GROUP_CONCAT(DISTINCT(average) ORDER BY average DESC) AS average_list
+     FROM
+        (SELECT AVG($ratings.rating) AS average
+         FROM $artifacts
+         LEFT JOIN $ratings 
+            ON $artifacts.id = $ratings.artifact_id
+            AND $ratings.status = 1
+     WHERE $artifacts.status = 1
+     GROUP BY $artifacts.id) AS averages) AS averages
+WHERE $artifacts.status = 1
+AND $artifacts.id = %d
+GROUP BY $artifacts.id
+LIMIT 1
+EOQ;
+        $data = array();
+        $sql = sprintf($sql, clean_id($id));
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)
+        {
+            foreach ($query->result_array() as $row)
+            {
+                $data = $row;
+                if (is_null($data['image']) === TRUE)
+                {
+                    unset($data['image']);
+                }
+                else
+                {
+                    $data['image'] = explode(',', $data['image']);
+                }       
+            }       
+        }   
+        $query->free_result();  
+
+        return $data;                   
+    }
+
 
     /**
       * Get array of Artifact records ordered by rank
@@ -100,7 +179,7 @@ SELECT  $artifacts.id,
         STDDEV_POP($ratings.rating) AS deviation,
         SUM($ratings.rating) AS points,
         COUNT($ratings.rating) AS votes,
-        views
+        $artifacts.views
 FROM $artifacts
 LEFT JOIN $ratings
         ON $artifacts.id = $ratings.artifact_id
