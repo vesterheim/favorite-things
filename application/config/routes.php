@@ -41,6 +41,10 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
+$route['artifacts'] = 'artifacts/index';
+$route['artifacts/(:any)'] = (isset($_SERVER['REQUEST_METHOD']) === TRUE && $_SERVER['REQUEST_METHOD'] == 'GET') ? 'artifacts/show/$1' : 'artifacts/update/$1';
+$route['about'] = 'about/index';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
