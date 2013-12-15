@@ -99,12 +99,15 @@ class Artifacts extends CI_Controller {
 	 *       no more need for hidden variables
 	 *		 or special HTTP verbs
 	 */
-	public function update($id)
+	public function update($artifact_id)
 	{
 		$this->load->model('rating_model');
+		$id = $this->input->post('previous_id');
+		$rating = $this->input->post('rating');
+		$ip_address = $this->input->ip_address();
+		$this->rating_model->update($id, $artifact_id, $rating, $ip_address);
 
 		echo "artifacts.update";
-
 	}
 
 
