@@ -41,17 +41,12 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 $route['artifacts'] = 'artifacts/index';
-$route['artifacts/(:num)'] = 
-	(isset($_SERVER['REQUEST_METHOD']) === TRUE && $_SERVER['REQUEST_METHOD'] == 'POST') ?
-		(
-			(isset($_POST['_method']) === TRUE && $_POST['_method'] === 'PUT') ?
-				'ratings/update/$1'
-			:
-				'ratings/store/$1'
-		)
-	:
-		'artifacts/show/$1'
-;
+$route['artifacts/(:num)'] = 'artifacts/show/$1';
+if (isset($_SERVER['REQUEST_METHOD']) === TRUE && $_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	$route['artifacts/(:num)/ratings'] = 'ratings/store/$1';
+	$route['artifacts/(:num)/ratings/(:num)'] = 'ratings/update/$2/$1';
+}
 $route['about'] = 'about/index';
 
 
