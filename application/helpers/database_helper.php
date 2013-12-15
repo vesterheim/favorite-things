@@ -19,18 +19,67 @@ if ( ! function_exists('clean_id'))
 	}
 }
 
+if ( ! function_exists('clean_rating'))
+{		
+	/**
+	  * clean_rating
+	  * Returns trimed, unsigned integer value 
+	  *
+	  * @param mixed $input
+	  * @return integer 
+	  *
+	  */ 
+	function clean_rating($input)
+	{
+		return abs(intval($input));
+	}
+}
+
 if ( ! function_exists('is_idish'))
 {		
 	/**
 	  * is_integerish
-	  * Determines input looks like a valid ID 
+	  * Determines if input looks like a valid ID 
+	  *
+	  * @param string|integer $input
+	  * @return boolean  
+	  * @todo Consider changing name to is_valid_id
+	  *
+	  */ 
+	function is_idish($input)
+	{
+		return (filter_var($input, FILTER_VALIDATE_INT, array('min_range' => 1)) !== FALSE);
+	}
+}
+
+if ( ! function_exists('is_valid_ip'))
+{		
+	/**
+	  * is_valid_ip
+	  * Determines if input looks like a valid IP 
 	  *
 	  * @param string|integer $input
 	  * @return boolean  
 	  *
 	  */ 
-	function is_idish($input)
+	function is_valid_ip($input)
 	{
-		return (filter_var($input, FILTER_VALIDATE_INT) !== FALSE && (intval($input) > 0));
+		return (filter_var($input, FILTER_VALIDATE_IP) !== FALSE);
+	}
+}
+
+if ( ! function_exists('is_valid_rating'))
+{		
+	/**
+	  * is_valid_rating
+	  * Determines if input is a integer between 1 and 10
+	  *
+	  * @param string|integer $input
+	  * @return boolean  
+	  *
+	  */ 
+	function is_valid_rating($input)
+	{
+		return (filter_var($input, FILTER_VALIDATE_INT, array('min_range' => 1, 'max_range' => 10)) !== FALSE);
 	}
 }
