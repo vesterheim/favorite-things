@@ -3,6 +3,7 @@
 $this->load->helper('form');
 
 echo validation_errors();
+echo $validation_errors;
 
 echo form_open(NULL, array('class' => 'form-inline'));
 echo form_fieldset('Rate this artifact');
