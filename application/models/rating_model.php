@@ -52,4 +52,42 @@ class Rating_model extends MY_Model
             )
         );
     }  
+
+    /**
+      * Add Artifact Rating
+      * Inserts a new row
+      *
+      * @access public
+      * @param int $artifact_id of artifact being rated
+      * @param int $rating between 1 and 10
+      * @param string $ip_address 
+      * @return boolean|int either the rating_id on success 
+      *                     or FALSE on failure.
+      */
+    public function add($artifact_id, $rating, $ip_address) 
+    {
+        if (is_idish($artifact_id) === FALSE)
+        {
+            throw new InvalidArgumentException('Rating_model::add() expects an integer for the artifact_id parameter.   Input was: ' . $artifact_id);
+        } 
+        if (is_valid_rating($rating) === FALSE)
+        {
+            throw new InvalidArgumentException('Rating_model::add() expects an integer between 1 and 10 for the rating parameter.   Input was: ' . $rating);
+        } 
+        if (is_valid_ip($ip_address) === FALSE)
+        {
+            throw new InvalidArgumentException('Rating_model::add() expects a valid IP address ip_address parameter.   Input was: ' . $ip_address);
+        }         
+
+        $this->db->set('artifact_id', clean_id($artifact_id));
+        $this->db->set('rating', clean_rating($rating));
+        $this->db->set('status', 1);
+        $this->db->set('ip_address', "INET_ATON('$ip_address')", FALSE);  
+        $this->db->insert($this->table());
+        if ($this->db->affected_rows() === 0)
+        {
+            return FALSE;
+        }
+        return $this->db->insert_id();
+    }    
 }
