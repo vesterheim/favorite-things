@@ -40,9 +40,18 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
-
 $route['artifacts'] = 'artifacts/index';
-$route['artifacts/(:any)'] = (isset($_SERVER['REQUEST_METHOD']) === TRUE && $_SERVER['REQUEST_METHOD'] == 'GET') ? 'artifacts/show/$1' : 'artifacts/store/$1';
+$route['artifacts/(:num)'] = 
+	(isset($_SERVER['REQUEST_METHOD']) === TRUE && $_SERVER['REQUEST_METHOD'] == 'POST') ?
+		(
+			(isset($_POST['_method']) === TRUE && $_POST['_method'] === 'PUT') ?
+				'artifacts/update/$1'
+			:
+				'artifacts/store/$1'
+		)
+	:
+		'artifacts/show/$1'
+;
 $route['about'] = 'about/index';
 
 
