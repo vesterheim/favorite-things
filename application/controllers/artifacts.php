@@ -76,6 +76,8 @@ class Artifacts extends CI_Controller {
 		$data['subview'] = 'artifacts/detail';
 		$data['current_navigation'] = 'browse';
 
+		$data['form_action'] = "artifacts/$id/ratings";
+
 		$data['rated'] = FALSE;
 
 		$this->load->view('layouts/master', $data);				

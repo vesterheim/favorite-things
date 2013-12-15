@@ -5,7 +5,7 @@ $this->load->helper('form');
 echo validation_errors();
 echo $validation_errors;
 
-echo form_open(NULL, array('class' => 'form-inline'));
+echo form_open($form_action, array('class' => 'form-inline'));
 echo form_fieldset('Rate this artifact');
 echo '<div class="text-center">';
 for ($i = 1; $i <= 10; $i++) 
