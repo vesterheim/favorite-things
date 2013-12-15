@@ -56,11 +56,16 @@ class Migration_Create_artifacts_table extends CI_Migration
                 'type' => 'TINYINT',
                 'constraint' => 1,
                 'null' => FALSE),
-            'views' => array(
+            'unique_views' => array(
                 'type' => 'INT', 
                 'default' => 0,
                 'unsigned' => TRUE, 
                 'null' => FALSE),
+            'views' => array(
+                'type' => 'INT', 
+                'default' => 0,
+                'unsigned' => TRUE, 
+                'null' => FALSE),            
             'created_at' => array(
                 'type' => 'TIMESTAMP', 
                 'default' => '0000-00-00 00:00:00',

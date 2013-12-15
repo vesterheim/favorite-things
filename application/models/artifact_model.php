@@ -64,12 +64,17 @@ class Artifact_model extends MY_Model
                 'field' => 'status',
                 'label' => 'Status',
                 'rules' => 'required|is_natural|less_than[2]'
-            ),   
+            ),
+            array(
+                'field' => 'unique_views',
+                'label' => 'Unique Views',
+                'rules' => 'is_natural'
+            ),                
             array(
                 'field' => 'views',
                 'label' => 'Views',
                 'rules' => 'is_natural'
-            )
+            )          
         );
 
         $this->load->helper('database');
@@ -215,18 +220,23 @@ EOQ;
 
     /**
       * Increment views by 1
+      * Pass TRUE as second $unique param to track unique views
       *
       * @access public
-      * @param int $id   
+      * @param int $id  
+      * @param boolean $unique (optional)   
       * @return boolean
       */
-    public function update_views($id) 
+    public function update_views($id, $unique=FALSE) 
     {
         if (is_idish($id) === FALSE)
         {
             throw new InvalidArgumentException('Artifact_model::update_views() expects an integer for the artifact_id parameter.  Input was: ' . $id);
         } 
-        
+        if ($unique !== FALSE)
+        {
+            $this->db->set('unique_views', 'unique_views+1', FALSE);
+        }        
         $this->db->set('views', 'views+1', FALSE);
         $this->db->set('updated_at', 'NOW()', FALSE);
         $this->db->where('id', clean_id($id));

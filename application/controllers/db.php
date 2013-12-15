@@ -56,7 +56,6 @@ class Db extends CI_Controller
      */
     function seed()
     {
-
         $this->load->model('rating_model');
         $this->load->library('seeds/ratings_seeder');
         $this->ratings_seeder->run($this->rating_model);
@@ -70,6 +69,6 @@ class Db extends CI_Controller
         $this->artifacts_seeder->run($this->artifact_model);
 
         // Uncomment the below to update artifacts table with reasonable view counts
-        $this->db->query('UPDATE artifacts SET views = (SELECT count(*) FROM ratings WHERE artifacts.id=ratings.artifact_id)');
+        $this->db->query('UPDATE artifacts SET unique_views = (SELECT count(*) FROM ratings WHERE artifacts.id=ratings.artifact_id), views = (SELECT count(*) FROM ratings WHERE artifacts.id=ratings.artifact_id)');
     }
 }
