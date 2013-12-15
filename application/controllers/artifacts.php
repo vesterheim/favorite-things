@@ -24,6 +24,7 @@ class Artifacts extends CI_Controller {
     	$this->output->enable_profiler(ENVIRONMENT !== 'production');
     }
 
+
 	/**
 	 * List of artifacts sorted by ranking. 
 	 *
@@ -64,13 +65,45 @@ class Artifacts extends CI_Controller {
 
 
 	/**
-	 * Add or update a rating for a particular artifact
+	 * Add a rating for a particular artifact
 	 *
 	 * @param  int  $id
 	 * @return Response
+	 * @todo Add stuff to $input = validation if artifact ID, IP, etc...?
+	 * @todo Add validation
+	 * @todo Should this be in a rating controller?
+	 *       artifacts/(:num)/rating/
+	 *       no more need for hidden variables
+	 *		 or special HTTP verbs	 
+	 */
+	public function store($id)
+	{
+		$this->load->model('rating_model');
+		$artifact_id = $id;
+		$rating = $this->input->post('rating');
+		$ip_address = $this->input->ip_address();
+		$this->rating_model->add($artifact_id, $rating, $ip_address);
+
+		echo "artifacts.store";
+	}
+
+
+	/**
+	 * Update a rating for a particular artifact
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 * @todo Add validation	 
+	 * @todo Should this be in a rating controller?
+	 *       artifacts/(:num)/rating/(:num)
+	 *       no more need for hidden variables
+	 *		 or special HTTP verbs
 	 */
 	public function update($id)
 	{
+		$this->load->model('rating_model');
+
+		echo "artifacts.update";
 
 	}
 
