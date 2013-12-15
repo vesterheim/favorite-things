@@ -16,7 +16,7 @@ class Ratings extends CI_Controller {
     	parent::__construct();
 
     	$this->load->model('rating_model');
-
+		$this->load->library('form_validation');
     	/** 
     	 * Display profiler everywhere save the production
     	 * environment.
@@ -39,9 +39,6 @@ class Ratings extends CI_Controller {
 	 */
 	public function store($artifact_id)
 	{
-		$this->load->model('rating_model');
-		$this->load->library('form_validation');
-
 		$this->form_validation->set_rules($this->rating_model->validation());
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -76,9 +73,6 @@ class Ratings extends CI_Controller {
 	 */
 	public function update($previous_id, $artifact_id)
 	{
-		$this->load->model('rating_model');
-		$this->load->library('form_validation');
-
 		$this->form_validation->set_rules($this->rating_model->validation());
 		if ($this->form_validation->run() === FALSE)
 		{
