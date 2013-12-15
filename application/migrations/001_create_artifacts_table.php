@@ -60,7 +60,15 @@ class Migration_Create_artifacts_table extends CI_Migration
                 'type' => 'INT', 
                 'default' => 0,
                 'unsigned' => TRUE, 
-                'null' => FALSE)
+                'null' => FALSE),
+            'created_at' => array(
+                'type' => 'TIMESTAMP', 
+                'default' => '0000-00-00 00:00:00',
+                'null' => FALSE),
+            'updated_at' => array(
+                'type' => 'TIMESTAMP', 
+                'default' => '0000-00-00 00:00:00',
+                'null' => FALSE)            
         ));
         
         $this->dbforge->add_key('id', TRUE);

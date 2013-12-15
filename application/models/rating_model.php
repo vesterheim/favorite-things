@@ -107,7 +107,8 @@ class Rating_model extends MY_Model
         $this->db->set('rating', clean_rating($rating));
         $this->db->set('status', 1);
         $this->db->set('ip_address', "INET_ATON('$ip_address')", FALSE);
-        
+        $this->db->set('created_at', 'NOW()', FALSE);
+        $this->db->set('updated_at', 'NOW()', FALSE);
         if ($previous_id !== FALSE)
         {
             $this->db->set('previous_id', clean_id($previous_id));
@@ -141,7 +142,8 @@ class Rating_model extends MY_Model
         } 
         $this->db->set('status', 0);
         $this->db->where('id', clean_id($id));  
-        $this->db->where('artifact_id', clean_id($artifact_id));    
+        $this->db->where('artifact_id', clean_id($artifact_id));   
+        $this->db->set('updated_at', 'NOW()', FALSE); 
         $this->db->update($this->table());
         if ($this->db->affected_rows() === 0)
         {

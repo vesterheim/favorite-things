@@ -48,7 +48,15 @@ class Migration_Create_ratings_table extends CI_Migration
                 'type' => 'INT',
                 'constraint' => 10,
                 'unsigned' => TRUE,
-                'null' => TRUE)
+                'null' => TRUE),
+            'created_at' => array(
+                'type' => 'TIMESTAMP', 
+                'default' => '0000-00-00 00:00:00',
+                'null' => FALSE),
+            'updated_at' => array(
+                'type' => 'TIMESTAMP', 
+                'default' => '0000-00-00 00:00:00',
+                'null' => FALSE) 
         ));
         
         $this->dbforge->add_key('id', TRUE);

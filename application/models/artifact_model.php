@@ -228,6 +228,7 @@ EOQ;
         } 
         
         $this->db->set('views', 'views+1', FALSE);
+        $this->db->set('updated_at', 'NOW()', FALSE);
         $this->db->where('id', clean_id($id));
         $this->db->update($this->artifact_table());                 
         return (bool) ($this->db->affected_rows() > 0);                    

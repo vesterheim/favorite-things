@@ -19,7 +19,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Mrs. Glenn B. Moore ',
 				'dimensions' => 'Width, 4 inches; length, 9 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 2,
@@ -30,7 +32,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Hallingdal Folkemuseum',
 				'dimensions' => NULL,
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 3,
@@ -41,7 +45,9 @@ class Artifacts_seeder {
 				'creator' => 'Mary Christopher',
 				'source' => 'Gift of Fred Biermann',
 				'dimensions' => 'Length, 61.5 inches; width, 61.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 4,
@@ -52,7 +58,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Mrs. Thomas L. Harris',
 				'dimensions' => 'Length, 17.5 inches; width 17 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 5,
@@ -63,7 +71,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Ann H. Gunderson',
 				'dimensions' => NULL,
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 6,
@@ -74,7 +84,9 @@ class Artifacts_seeder {
 				'creator' => 'Porgrund',
 				'source' => 'Gift of Helga Lund Algyer',
 				'dimensions' => 'Height, 2 inches; width, 5.375 inches; depth, 5.375 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 7,
@@ -85,7 +97,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Eileen Borchers',
 				'dimensions' => 'Width, 11.5 inches, length, 10 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 8,
@@ -96,7 +110,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Ruth Herber',
 				'dimensions' => 'Height, 13.188 inches; width, 20 inches; depth, 13.125 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 9,
@@ -107,7 +123,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Ruth Herber',
 				'dimensions' => 'Diameter, 2 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 10,
@@ -118,7 +136,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown ',
 				'source' => 'Gift of Clara Asbjornson',
 				'dimensions' => 'Length, 51 inches; width, 65 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 11,
@@ -129,7 +149,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Valborg Ravn',
 				'dimensions' => ' Length, 72 inches; width, 57 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 12,
@@ -140,7 +162,9 @@ class Artifacts_seeder {
 				'creator' => 'Arild Weborg ',
 				'source' => 'Gift of Artist',
 				'dimensions' => 'Height, 38 inches; width, 38 inches.',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 13,
@@ -151,7 +175,9 @@ class Artifacts_seeder {
 				'creator' => 'Bernhard Berntsen',
 				'source' => 'Museum Purchase',
 				'dimensions' => 'Width, 14 inches; height, 18 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 14,
@@ -162,7 +188,9 @@ class Artifacts_seeder {
 				'creator' => 'Johannes Johanessen Oksdal',
 				'source' => 'Gift of Gertrude Berg',
 				'dimensions' => 'Height, 6 inches; width, 9 inches; depth, 6.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 15,
@@ -173,7 +201,9 @@ class Artifacts_seeder {
 				'creator' => 'Bernhard Berntsen',
 				'source' => 'Museum Purchase',
 				'dimensions' => 'Width, 36 inches; height, 40 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 16,
@@ -184,7 +214,9 @@ class Artifacts_seeder {
 				'creator' => 'Peter O. Foss',
 				'source' => 'Gift of William Currier',
 				'dimensions' => 'Height, 66 inches; width 52 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 17,
@@ -195,7 +227,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of J. Harry and Josefa Andersen',
 				'dimensions' => 'Height, 8 inches; width, 13.625 inches; depth, 8.313 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 18,
@@ -206,7 +240,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Wilfred and Ruth Harris',
 				'dimensions' => 'Length, 10 inches; width, 5.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 19,
@@ -217,7 +253,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Museum Purchase',
 				'dimensions' => 'Length, 71 inches; width, 45 inches.',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 20,
@@ -228,7 +266,9 @@ class Artifacts_seeder {
 				'creator' => 'Knut Torset',
 				'source' => 'Gift of Floyd Fairweather',
 				'dimensions' => 'Height, 3.125 inches; width, 9.125 inches; depth, 9 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 21,
@@ -239,7 +279,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Museum Purchase',
 				'dimensions' => 'Length, 87.5 inches; width, 3.625 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 22,
@@ -250,7 +292,9 @@ class Artifacts_seeder {
 				'creator' => 'Even Ulving',
 				'source' => 'Museum Purchase',
 				'dimensions' => 'Height, 27 inches, width, 37 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 23,
@@ -261,7 +305,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Eleanor Ericson',
 				'dimensions' => 'Height, 6.75 inches; width, 10 inches, depth, 5.75 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 24,
@@ -272,7 +318,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Fredrik Hedling',
 				'dimensions' => 'Height, 1 inch; width, 9.5 inches; depth, 1 inch',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 25,
@@ -283,7 +331,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Municipalities in West Telemark   ',
 				'dimensions' => 'Height, 1.25 inches; width, 10 inches; depth,1.125 inches.',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 26,
@@ -294,7 +344,9 @@ class Artifacts_seeder {
 				'creator' => 'Sigrid Melloh',
 				'source' => 'Museum Purchase',
 				'dimensions' => 'Length, 29 inches; width, 14.75 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 27,
@@ -305,7 +357,9 @@ class Artifacts_seeder {
 				'creator' => 'Helena Monson',
 				'source' => 'Gift of Elizabeth Forell',
 				'dimensions' => 'Length, 59 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 28,
@@ -316,7 +370,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Marion and Lila Nelson',
 				'dimensions' => 'Width, 5 inches; length, 7 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 29,
@@ -327,7 +383,9 @@ class Artifacts_seeder {
 				'creator' => 'James Jacobson',
 				'source' => 'Gift of Gunhild Jacobson and family',
 				'dimensions' => 'Height, 13.75 inches; width, 3.5 inches; depth, 5.75 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 30,
@@ -338,7 +396,9 @@ class Artifacts_seeder {
 				'creator' => 'Theodor Kittleson',
 				'source' => 'Gift of Darrell Henning',
 				'dimensions' => 'Width, 28 inches; height, 8.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 31,
@@ -349,7 +409,9 @@ class Artifacts_seeder {
 				'creator' => 'David Gray',
 				'source' => 'Gift of James Kornmeyer',
 				'dimensions' => 'Width, 9.5 inches; height, 7.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 32,
@@ -360,7 +422,9 @@ class Artifacts_seeder {
 				'creator' => 'Inga Lund',
 				'source' => 'Gift of Jennie H. Halverson in memory of Martha and Rolf Casper.',
 				'dimensions' => 'Height, 4.375 inches; width, 10 inches; depth, 4.813 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 33,
@@ -371,7 +435,9 @@ class Artifacts_seeder {
 				'creator' => 'Hans Glittenberg',
 				'source' => 'Gift of Gladys Fjelland',
 				'dimensions' => 'Height, 30 inches; width, 47.25 inches; depth, 26.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 34,
@@ -382,7 +448,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Marion and Lila Nelson',
 				'dimensions' => 'Height, 1.5 inches; length, 7.25 inches; depth, 1.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 35,
@@ -393,7 +461,9 @@ class Artifacts_seeder {
 				'creator' => 'Bjarne Walle',
 				'source' => 'Gift of Harry and Josefa Andersen',
 				'dimensions' => 'Height, 11.25 inches; width, 25.5 inches; depth, 5.75 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 36,
@@ -404,7 +474,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Museum Purchase',
 				'dimensions' => 'height, 0.563 inches; width, 3.063 inches  depth, 0.875 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 37,
@@ -415,7 +487,9 @@ class Artifacts_seeder {
 				'creator' => 'Husflid in southern Norway',
 				'source' => 'Gift of Grace Rikansrud',
 				'dimensions' => NULL,
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 38,
@@ -426,7 +500,9 @@ class Artifacts_seeder {
 				'creator' => 'Otinus Busness/Gary Albrecht',
 				'source' => 'Gift of Marjorie Runquist',
 				'dimensions' => 'Height, 3 inches; width, 24.25 inches; depth, 8 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 39,
@@ -437,7 +513,9 @@ class Artifacts_seeder {
 				'creator' => 'Jonas Lie',
 				'source' => 'Bequest of Nancy-Carroll Draper',
 				'dimensions' => 'Width, 55.688 inches, height, 45.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 40,
@@ -448,7 +526,9 @@ class Artifacts_seeder {
 				'creator' => 'Else Poulsson',
 				'source' => 'Gift of Phyllis and Bill Lyders in memory of our good friend and Norwegian brother, Erik Bye.</p>',
 				'dimensions' => 'Width, 54 inches; height, 85.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 41,
@@ -459,7 +539,9 @@ class Artifacts_seeder {
 				'creator' => 'Sommarøy Husflidslag',
 				'source' => 'Gift of Svein Ludvigsen',
 				'dimensions' => 'Width, 7.5 inches; length,18.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 42,
@@ -470,7 +552,9 @@ class Artifacts_seeder {
 				'creator' => 'Embrik Bæra',
 				'source' => 'Gift of Joan Losen in memory of Kari Ylvisaker Ness and Nora Hjermstad Fjeldstad',
 				'dimensions' => 'Height, 25 inches; width, 40 inches; depth, 21.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 43,
@@ -481,7 +565,9 @@ class Artifacts_seeder {
 				'creator' => 'Gudbrand Larssen Foss',
 				'source' => 'Gift of Edward Dahl',
 				'dimensions' => 'Height, 25.5 inches; width, 42.5 inches; depth, 25 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 44,
@@ -492,7 +578,9 @@ class Artifacts_seeder {
 				'creator' => 'Uknown',
 				'source' => 'Gift of Norwegian Museums',
 				'dimensions' => 'Height, 13 inches; width, 12.5 inches; depth, 12.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 45,
@@ -503,7 +591,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Norwegian Museums',
 				'dimensions' => 'Height, 7.25 inches; width, 7.75 inches; depth, 7.375 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 46,
@@ -514,7 +604,9 @@ class Artifacts_seeder {
 				'creator' => 'Sofia Rønsberg',
 				'source' => 'Museum Purchase',
 				'dimensions' => 'Width, 4 inches; length, 11 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 47,
@@ -525,7 +617,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of G. V.Vetlesen',
 				'dimensions' => 'Height, 6.5 inches; width, 29.25 inches; depth, 4.375 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 48,
@@ -536,7 +630,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Tone Øverland Smedal',
 				'dimensions' => NULL,
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 49,
@@ -547,7 +643,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Martha Skaar, Ragnhild Skaar, and Gunvor Gooding',
 				'dimensions' => 'Height, 6.5 inches; diameter, 6.5 inches',
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			),
 			array(
 				'id' => 50,
@@ -558,7 +656,9 @@ class Artifacts_seeder {
 				'creator' => 'Unknown',
 				'source' => 'Gift of Chris Aalgaard',
 				'dimensions' => NULL,
-				'status' => 1
+				'status' => 1,
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			)
 		);
 

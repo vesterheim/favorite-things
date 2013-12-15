@@ -26,6 +26,8 @@ class Ratings_seeder {
 				 * mt_rand(0, 4294967295)? Because I am crazy!
 				 */
 				'ip_address' => ip2long(long2ip(mt_rand(0, 4294967295))),
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
 			);
 		}
 
