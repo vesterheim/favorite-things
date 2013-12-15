@@ -10,6 +10,24 @@
 class Rating_model extends MY_Model 
 {	   
 
+    protected $validation = array(
+        array(
+            'field'   => 'rating',
+            'label'   => 'rating',
+            'rules'   => 'required|is_natural_no_zero|less_than[11]'
+        ),
+        array(
+            'field'   => 'artifact_id',
+            'label'   => 'previous rating id',
+            'rules'   => 'is_natural_no_zero'
+        ),
+        array(
+            'field'   => 'previous_id',
+            'label'   => 'previous rating id',
+            'rules'   => 'is_natural_no_zero'
+        )        
+    ); 
+
 	/**
 	 * Constructs the Artifact model
 	 */	
@@ -51,6 +69,8 @@ class Rating_model extends MY_Model
                 'rules' => 'is_natural_no_zero'
             )
         );
+
+        $this->load->helper('database');
     }  
 
     /**
@@ -87,6 +107,7 @@ class Rating_model extends MY_Model
         $this->db->set('rating', clean_rating($rating));
         $this->db->set('status', 1);
         $this->db->set('ip_address', "INET_ATON('$ip_address')", FALSE);
+        
         if ($previous_id !== FALSE)
         {
             $this->db->set('previous_id', clean_id($previous_id));
@@ -129,4 +150,14 @@ class Rating_model extends MY_Model
         return $this->add($artifact_id, $rating, $ip_address, $id);
     }
 
+
+
+   /**
+      * Get Form Validation Array
+      * @return array
+      */
+    public function validation() 
+    {
+        return $this->validation;
+    }
 }
