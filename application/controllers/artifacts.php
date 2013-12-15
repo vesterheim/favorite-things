@@ -67,7 +67,7 @@ class Artifacts extends CI_Controller {
 	/**
 	 * Add a rating for a particular artifact
 	 *
-	 * @param  int  $id
+	 * @param  int $artifact_id
 	 * @return Response
 	 * @todo Add stuff to $input = validation if artifact ID, IP, etc...?
 	 * @todo Add validation
@@ -76,10 +76,9 @@ class Artifacts extends CI_Controller {
 	 *       no more need for hidden variables
 	 *		 or special HTTP verbs	 
 	 */
-	public function store($id)
+	public function store($artifact_id)
 	{
 		$this->load->model('rating_model');
-		$artifact_id = $id;
 		$rating = $this->input->post('rating');
 		$ip_address = $this->input->ip_address();
 		$this->rating_model->add($artifact_id, $rating, $ip_address);
@@ -91,7 +90,7 @@ class Artifacts extends CI_Controller {
 	/**
 	 * Update a rating for a particular artifact
 	 *
-	 * @param  int  $id
+	 * @param  int $artifact_id
 	 * @return Response
 	 * @todo Add validation	 
 	 * @todo Should this be in a rating controller?
