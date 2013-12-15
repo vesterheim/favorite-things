@@ -74,7 +74,7 @@ class Ratings extends CI_Controller {
 	 *       no more need for hidden variables
 	 *		 or special HTTP verbs
 	 */
-	public function update($artifact_id)
+	public function update($previous_id, $artifact_id)
 	{
 		$this->load->model('rating_model');
 		$this->load->library('form_validation');
@@ -94,10 +94,9 @@ class Ratings extends CI_Controller {
 			redirect("/artifacts/$artifact_id");
 		}	
 		
-		$id = $this->input->post('previous_id');
 		$rating = $this->input->post('rating');
 		$ip_address = $this->input->ip_address();
-		$this->rating_model->update($id, $artifact_id, $rating, $ip_address);
+		$this->rating_model->update($previous_id, $artifact_id, $rating, $ip_address);
 
 		echo "ratings.update";
 	}
