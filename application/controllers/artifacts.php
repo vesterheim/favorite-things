@@ -16,6 +16,7 @@ class Artifacts extends CI_Controller {
     	parent::__construct();
 
     	$this->load->model('artifact_model');
+    	$this->load->helper('controller');
 
     	/** 
     	 * Display profiler everywhere save the production
@@ -52,8 +53,25 @@ class Artifacts extends CI_Controller {
 	public function show($id)
 	{
 		$data['artifact'] = $this->artifact_model->get($id);
+
 		$this->artifact_model->update_views($id);
 
+		/**
+		 * If there were validation errors, we may have been 
+		 * redirected back to this controller. Retreieve any
+		 * stashed validation errors and store them in 
+		 * $data['validation_errors']. We are using it instead of
+		 * validation_errors() in the rating form view, so we need 
+		 * its value or FALSE anyway. If there were validation 
+		 * errors, retrieve the stashed $this->input->post() and
+		 * insert it back into $_POST to repopulate the form.
+		 */
+		$data['validation_errors'] = $this->session->flashdata('stashed_validation_errors');
+		if ($data['validation_errors'] !== FALSE)
+		{
+			insert_into__POST($this->session->flashdata('stashed_input_from_post'));
+		}
+		
 		$data['title'] = 'Rate ' . $data['artifact']['name'] . ' [' . $data['artifact']['identifier'] . ']';
 		$data['subview'] = 'artifacts/detail';
 		$data['current_navigation'] = 'browse';
@@ -79,6 +97,21 @@ class Artifacts extends CI_Controller {
 	public function store($artifact_id)
 	{
 		$this->load->model('rating_model');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules($this->rating_model->validation());
+		if ($this->form_validation->run() === FALSE)
+		{
+		/**
+		 * If form validation fails, stash the form input and 
+		 * validation in "flashdata" so it can be retrieved after 
+		 * the redirect back to the entry form.
+		 */
+			$this->session->set_flashdata('stashed_input_from_post', $this->input->post());
+			$this->session->set_flashdata('stashed_validation_errors', validation_errors());
+			redirect("/artifacts/$artifact_id");
+		}	
+
 		$rating = $this->input->post('rating');
 		$ip_address = $this->input->ip_address();
 		$this->rating_model->add($artifact_id, $rating, $ip_address);
@@ -101,6 +134,23 @@ class Artifacts extends CI_Controller {
 	public function update($artifact_id)
 	{
 		$this->load->model('rating_model');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules($this->rating_model->validation());
+		if ($this->form_validation->run() === FALSE)
+		{
+		/**
+		 * Same as add() method. I know. Not very DRY.
+		 *
+		 * If form validation fails, stash the form input and 
+		 * validation in "flashdata" so it can be retrieved after 
+		 * the redirect back to the entry form.
+		 */			
+			$this->session->set_flashdata('stashed_input_from_post', $this->input->post());
+			$this->session->set_flashdata('stashed_validation_errors', validation_errors());
+			redirect("/artifacts/$artifact_id");
+		}	
+		
 		$id = $this->input->post('previous_id');
 		$rating = $this->input->post('rating');
 		$ip_address = $this->input->ip_address();
