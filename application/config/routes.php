@@ -45,9 +45,9 @@ $route['artifacts/(:num)'] =
 	(isset($_SERVER['REQUEST_METHOD']) === TRUE && $_SERVER['REQUEST_METHOD'] == 'POST') ?
 		(
 			(isset($_POST['_method']) === TRUE && $_POST['_method'] === 'PUT') ?
-				'artifacts/update/$1'
+				'ratings/update/$1'
 			:
-				'artifacts/store/$1'
+				'ratings/store/$1'
 		)
 	:
 		'artifacts/show/$1'
