@@ -69,8 +69,6 @@ class Rating_model extends MY_Model
                 'rules' => 'is_natural_no_zero'
             )
         );
-
-        $this->load->helper('database');
     }  
 
     /**

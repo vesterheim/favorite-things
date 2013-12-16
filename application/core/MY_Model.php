@@ -56,6 +56,8 @@ class MY_Model extends CI_Model
     {
         parent::__construct();
 
+        $this->load->helper('database');
+
 		$this->_artifact_table = config_item('artifact_table');
 		$this->_image_table    = config_item('image_table');
 		$this->_rating_table   = config_item('rating_table');

@@ -76,8 +76,6 @@ class Artifact_model extends MY_Model
                 'rules' => 'is_natural'
             )          
         );
-
-        $this->load->helper('database');
     }
 
 
