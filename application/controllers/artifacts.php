@@ -9,7 +9,7 @@ class Artifacts extends CI_Controller {
 	 * Probably could have at least a Ratings controller, but let's
 	 * Keep it simple.
 	 */
-
+	protected $pagination_config = array();
 
 	public function __construct()
     {
@@ -18,6 +18,26 @@ class Artifacts extends CI_Controller {
     	$this->load->model('artifact_model');
     	$this->load->model('visitor_model');
     	$this->load->helper('controller');
+
+    	$this->load->library('pagination');
+    	$this->pagination_config = array(
+			'base_url'       => 'http://ci.favoritethings.vesterheim.dev/artifacts/page',
+			'total_rows'     => $this->artifact_model->count(),
+			'per_page'       => 12,
+			'num_links'      => 20,
+			'full_tag_open'  => '<ul class="pagination">',
+			'full_tag_close' => '</ul>',
+			'next_link'      => '&raquo;',
+			'next_tag_open'  => '<li>',
+			'next_tag_close' => '</li>',
+			'prev_link'      => '&laquo;',
+			'prev_tag_open'  => '<li>',
+			'prev_tag_close' => '</li>',
+			'cur_tag_open'   => '<li class="active"><span>',
+			'cur_tag_close'  => '<span class="sr-only">(current)</span></span></li>',
+			'num_tag_open'   => '<li>',
+			'num_tag_close'  => '</li>'
+    	);    	
 
     	/** 
     	 * Display profiler everywhere save the production
@@ -33,11 +53,13 @@ class Artifacts extends CI_Controller {
 	 * @return Response
 	 * @todo consider pagination
 	 */	
-	public function index()
+	public function index($offset=0)
 	{
-		$data['artifacts'] = $this->artifact_model->get_all();
+		$data['artifacts'] = $this->artifact_model->get_all($this->pagination_config['per_page'], $offset);
 
 		$data['alerts'] = $this->alert_model->get();
+
+		$this->pagination->initialize($this->pagination_config, $this->pagination_config['per_page'], $this->uri->segment(3));
 
 		$data['title'] = 'Current Artifact Rankings';
 		$data['title_messsage'] = '<div>50 artifacts were nominated. Your votes decide which ones are exbihibited and which ones remain in storage.</div>';
@@ -47,6 +69,10 @@ class Artifacts extends CI_Controller {
 		$this->load->view('layouts/master', $data);
 	}
 
+	public function redirect_to_index()
+	{
+		redirect('/artifacts');
+	}
 
 	/**
 	 * Display the specified artifact.
@@ -57,6 +83,8 @@ class Artifacts extends CI_Controller {
 	public function show($id)
 	{
 		$data['artifact'] = $this->artifact_model->get($id);
+
+		$data['alerts'] = $this->alert_model->get();
 
 // probably need to check for existence of artifact
 		$data['subview'] = 'artifacts/detail';

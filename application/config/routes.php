@@ -41,6 +41,8 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 $route['artifacts'] = 'artifacts/index';
+$route['artifacts/page'] = 'artifacts/redirect_to_index';
+$route['artifacts/page/(:num)'] = 'artifacts/index/$1';  
 $route['artifacts/(:num)'] = 'artifacts/show/$1';
 if (isset($_SERVER['REQUEST_METHOD']) === TRUE && $_SERVER['REQUEST_METHOD'] == 'POST')
 {

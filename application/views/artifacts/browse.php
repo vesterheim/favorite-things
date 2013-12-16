@@ -49,3 +49,4 @@
 
 <?php endforeach; ?>
       </div>
+<?php $this->load->view('_partials/pagination'); ?>      
