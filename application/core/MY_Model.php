@@ -101,12 +101,7 @@ class MY_Model extends CI_Model
     	if (is_array($data) === FALSE) {
     		return FALSE;
     	}
-
-        /**
-         * Check to see if $data is an associate array
-         * @todo probably should be a helper function
-         */
-    	if ((bool)count(array_filter(array_keys($data), 'is_string')) === TRUE)
+    	if (is_assoc($data) === TRUE)
     	{
     		return $this->_insert_row($data, $skip_validation);
     	}
