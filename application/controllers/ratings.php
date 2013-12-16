@@ -14,11 +14,13 @@ class Ratings extends CI_Controller {
 	public function __construct()
     {
     	parent::__construct();
-
+    	$this->load->model('alert_model');
     	$this->load->model('artifact_model');
     	$this->load->model('rating_model');
     	$this->load->model('visitor_model');
+
 		$this->load->library('form_validation');
+		$this->load->helper('controller');
 
     	/** 
     	 * Display profiler everywhere save the production
@@ -52,10 +54,11 @@ class Ratings extends CI_Controller {
 		 */
 			$this->session->set_flashdata('stashed_input_from_post', $this->input->post());
 			$this->session->set_flashdata('stashed_validation_errors', validation_errors());
+			$this->alert_model->add(validation_errors(), 'error');
 			redirect("/artifacts/$artifact_id");
 		}	
 
-		$rating = $this->input->post('rating');
+		$rating = $this->input->post('rating', TRUE);
 		$ip_address = $this->input->ip_address();
 		// error checking here?
 		$rating_id = $this->rating_model->add($artifact_id, $rating, $ip_address);
@@ -63,9 +66,11 @@ class Ratings extends CI_Controller {
 
 		if ($this->visitor_model->get_rated_count() < $this->artifact_model->count())
 		{
+			$this->alert_model->add('You rated the ' . $this->artifact_model->name($artifact_id) . ' ' . indefinite_article($rating) . ' ' . $rating . ' out of 10.');
 			$artifacts_rated = $this->visitor_model->get_rated();
 			redirect('/artifacts/' . $this->artifact_model->get_random_id($artifacts_rated));			
 		}
+		$this->alert_model->add('Congratulations and thank you! You rated all ' . $this->artifact_model->count() . ' artifacts.', 'success');
 		redirect('/artifacts');
 	}
 
@@ -95,10 +100,11 @@ class Ratings extends CI_Controller {
 		 */			
 			$this->session->set_flashdata('stashed_input_from_post', $this->input->post());
 			$this->session->set_flashdata('stashed_validation_errors', validation_errors());
+			$this->alert_model->add(validation_errors(), 'error');
 			redirect("/artifacts/$artifact_id");
 		}	
 		
-		$rating = $this->input->post('rating');
+		$rating = $this->input->post('rating', TRUE);
 		$ip_address = $this->input->ip_address();
 		// error checking here?
 		$rating_id = $this->rating_model->update($previous_id, $artifact_id, $rating, $ip_address);
@@ -106,9 +112,10 @@ class Ratings extends CI_Controller {
 
 		if ($this->visitor_model->get_rated_count() < $this->artifact_model->count())
 		{
+			$this->alert_model->add('You rated the ' . $this->artifact_model->name($artifact_id) . ' ' . indefinite_article($rating) . ' ' . $rating . ' out of 10.');			
 			$artifacts_rated = $this->visitor_model->get_rated();
 			redirect('/artifacts/' . $this->artifact_model->get_random_id($artifacts_rated));			
 		}
-		redirect('/artifacts');
+		redirect("/artifacts/$artifact_id");
 	}
 }
