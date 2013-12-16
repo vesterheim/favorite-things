@@ -6,7 +6,7 @@ echo validation_errors();
 echo $validation_errors;
 
 echo form_open($form_action, array('class' => 'form-inline'));
-echo form_fieldset('Rate this artifact');
+echo form_fieldset($form_legend);
 echo '<div class="text-center">';
 for ($i = 1; $i <= 10; $i++) 
 {
@@ -15,7 +15,7 @@ for ($i = 1; $i <= 10; $i++)
 		(($i === 1) ? '<i class="glyphicon glyphicon-thumbs-down"></i> ' : '') . 		
 		form_radio(
 			array(
-				'checked' => (set_radio('rating', $i) || ($rated == $i) ? 'checked="checked"' : FALSE),
+				'checked' => (set_radio('rating', $i) ? 'checked="checked"' : FALSE),
 				'name' => 'rating',
 				'class' => 'rating_radio',
 				'value' => $i
@@ -33,7 +33,7 @@ $submit = array(
 	'name' => 'submit'
 );
 echo form_submit($submit,
-	'Rate it!'
+	$form_submit
 );
 echo '</div>';
 echo '</div>';
