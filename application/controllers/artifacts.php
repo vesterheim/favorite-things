@@ -81,7 +81,7 @@ class Artifacts extends CI_Controller {
 			$data['form_action'] .= '/' . $this->visitor_model->get_rating_id($id);
 			$data['rating'] = $this->visitor_model->get_rating($id);
 			$data['form_legend'] = "You rated this artifact {$data['rating']} out of 10.";
-			$data['form_submit'] = 'Change Rating!';
+			$data['form_submit'] = 'Change Rating';
 		}
 		/**
 		 * If there were validation errors, we may have been 
