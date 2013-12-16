@@ -12,3 +12,13 @@ if (!function_exists('insert_into__POST')) {
 	    return TRUE;
     } 
 }
+
+if (!function_exists('indefinte article')) {
+    function indefinite_article($number) {
+    	if ($number == 8)
+    	{
+    		return 'an';
+    	}
+    	return 'a';
+    } 
+}
