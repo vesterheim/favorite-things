@@ -14,7 +14,7 @@ class Artifacts extends CI_Controller {
 	public function __construct()
     {
     	parent::__construct();
-
+    	$this->load->model('alert_model');
     	$this->load->model('artifact_model');
     	$this->load->model('visitor_model');
     	$this->load->helper('controller');
@@ -37,7 +37,10 @@ class Artifacts extends CI_Controller {
 	{
 		$data['artifacts'] = $this->artifact_model->get_all();
 
-		$data['title'] = 'Artifacts';
+		$data['alerts'] = $this->alert_model->get();
+
+		$data['title'] = 'Current Artifact Rankings';
+		$data['title_messsage'] = '<div>50 artifacts were nominated. Your votes decide which ones are exbihibited and which ones remain in storage.</div>';
 		$data['subview'] = 'artifacts/browse';
 		$data['current_navigation'] = 'browse';
 

@@ -6,7 +6,8 @@
  */ 
 ?>
       <div class="page-header">       
-        <h1><?php echo $title; ?></h1>  
+        <h1><?php echo $title; ?></h1>
+        <?php if (isset($title_messsage) === TRUE) { echo $title_messsage; } ?>
       </div>
 
       <div class="row">
