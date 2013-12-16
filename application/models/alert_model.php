@@ -39,7 +39,7 @@ class Alert_model extends CI_Model
 	  */
 	public function add($message, $type='success', $flashdata=TRUE)
 	{
-		$valid_types = array('error', 'info', 'success', 'warning');
+		$valid_types = array('danger', 'info', 'success', 'warning');
 		/* add validation */
 		/* add text filtering */
 		$this->_new[] = array(

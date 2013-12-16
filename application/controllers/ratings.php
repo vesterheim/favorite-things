@@ -54,7 +54,7 @@ class Ratings extends CI_Controller {
 		 */
 			$this->session->set_flashdata('stashed_input_from_post', $this->input->post());
 			$this->session->set_flashdata('stashed_validation_errors', validation_errors());
-			$this->alert_model->add(validation_errors(), 'error');
+			$this->alert_model->add(validation_errors(), 'danger');
 			redirect("/artifacts/$artifact_id");
 		}	
 
@@ -100,7 +100,7 @@ class Ratings extends CI_Controller {
 		 */			
 			$this->session->set_flashdata('stashed_input_from_post', $this->input->post());
 			$this->session->set_flashdata('stashed_validation_errors', validation_errors());
-			$this->alert_model->add(validation_errors(), 'error');
+			$this->alert_model->add(validation_errors(), 'danger');
 			redirect("/artifacts/$artifact_id");
 		}	
 		

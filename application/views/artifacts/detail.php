@@ -1,7 +1,7 @@
       <div class="page-header">     
         <h1><?php echo $artifact['name']; ?> <small>[<?php echo $artifact['identifier']; ?>]</small></h1>  
       </div>
-
+      <?php $this->load->view('_partials/alerts'); ?>
       <div class="row">
 
         <div class="col-xs-12 col-sm-9 col-md-6 col-lg-6">

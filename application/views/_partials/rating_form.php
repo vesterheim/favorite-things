@@ -2,9 +2,6 @@
 
 $this->load->helper('form');
 
-echo validation_errors();
-echo $validation_errors;
-
 echo form_open($form_action, array('class' => 'form-inline'));
 echo form_fieldset($form_legend);
 echo '<div class="text-center">';
@@ -27,6 +24,7 @@ for ($i = 1; $i <= 10; $i++)
 		array('class' => 'radio rating_radio_label')
 	);
 }
+echo "<div class=\"text-danger\">$validation_errors</div>";
 echo '<div style="margin-top:7px;margin-bottom:7px;">';
 $submit = array(
 	'class' => 'btn btn-primary',
