@@ -176,13 +176,23 @@ EOQ;
       * @access public  
       * @return array Artifact records
       */
-    public function get_all() 
+    public function get_all($limit=FALSE, $offset=0) 
     {
         $data = array();
 
         $artifacts = $this->artifact_table();
         $images = $this->image_table();
         $ratings = $this->rating_table();
+
+        $pagination = '';
+        if ($limit !== FALSE && filter_var($limit, FILTER_VALIDATE_INT, array('min_range' => 1)) !== FALSE)
+        {
+            $pagination = 'LIMIT ' . abs(intval($limit));
+            if (filter_var($offset, FILTER_VALIDATE_INT, array('min_range' => 0)) !== FALSE)
+            {
+                $pagination .= ' OFFSET ' . abs(intval($offset));
+            }
+        }
 
         $sql = <<<EOQ
 SELECT  $artifacts.id,
@@ -215,7 +225,9 @@ CROSS JOIN
 WHERE $artifacts.status = 1
 GROUP BY $artifacts.id
 ORDER BY rank
+$pagination
 EOQ;
+
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0)
         {
