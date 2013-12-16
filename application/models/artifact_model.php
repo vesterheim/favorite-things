@@ -80,6 +80,21 @@ class Artifact_model extends MY_Model
 
 
     /**
+      * Get Artifact count
+      * 
+      *
+      * @access public  
+      * @return int number of active artifacts
+      */
+    public function count() 
+    {   
+        $this->db->from($this->table());
+        $this->db->where('status', 1);
+        return $this->db->count_all_results();
+    }
+
+
+    /**
       * Get Artifact record by ID
       *
       * @access public
@@ -238,7 +253,80 @@ EOQ;
         $this->db->set('views', 'views+1', FALSE);
         $this->db->set('updated_at', 'NOW()', FALSE);
         $this->db->where('id', clean_id($id));
-        $this->db->update($this->artifact_table());                 
+        $this->db->update($this->table());                 
         return (bool) ($this->db->affected_rows() > 0);                    
     }
+
+
+    /**
+      * Get Random Artifact ID
+      *
+      * @access public
+      * @param int|string|array $skip single or list of artifact_id's to skip         
+      * @return string Artifact ID
+      */
+    public function get_random_id($skip = array()) 
+    {
+        $data = FALSE;
+        if ($this->_is_valid_skip($skip) === FALSE)
+        {
+           throw new InvalidArgumentException('Artifact_model::get_random_id() expects an array of integers for the skip parameter.  Input was: ' . $skip);
+        }
+
+        /**
+         * Get random active artifact_id not in skip list
+         */
+        $this->db->select('id');
+        $this->db->from($this->table());
+        $this->db->where('status', 1);
+        if (empty($skip) === FALSE)
+        {
+            $this->db->where_not_in('id', $skip);
+        }
+        $this->db->order_by('id', 'random');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0)
+        {
+            foreach ($query->result_array() as $row)
+            {
+                $data = $row['id'];
+            }   
+        }   
+        $query->free_result();                      
+
+        return $data;
+    }
+
+    /**
+      * Validate skip param
+      *
+      * @access protected
+      * @param array $skip list of artifact_id's to skip         
+      * @return boolean
+      */
+    protected function _is_valid_skip($skip) 
+    {
+        if (is_array($skip) === FALSE)
+        {
+            return FALSE;
+        }
+        if (is_assoc($skip) === TRUE)
+        {
+            return FALSE;
+        }
+        if (empty($skip) === TRUE)
+        {
+            return TRUE;
+        }
+        foreach ($skip as $i)
+        {
+            if (is_valid_id($i) === FALSE)
+            {
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
+
 }
