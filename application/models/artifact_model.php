@@ -88,7 +88,7 @@ class Artifact_model extends MY_Model
       */
     public function get($id) 
     {
-        if (is_idish($id) === FALSE)
+        if (is_valid_id($id) === FALSE)
         {
             throw new InvalidArgumentException('Artifact_model::get() expects an integer for the $id parameter.  Input was: ' . $id);
         } 
@@ -227,7 +227,7 @@ EOQ;
       */
     public function update_views($id, $unique=FALSE) 
     {
-        if (is_idish($id) === FALSE)
+        if (is_valid_id($id) === FALSE)
         {
             throw new InvalidArgumentException('Artifact_model::update_views() expects an integer for the artifact_id parameter.  Input was: ' . $id);
         } 

@@ -35,18 +35,17 @@ if ( ! function_exists('clean_rating'))
 	}
 }
 
-if ( ! function_exists('is_idish'))
+if ( ! function_exists('is_valid_id'))
 {		
 	/**
-	  * is_integerish
+	  * is_valid_id
 	  * Determines if input looks like a valid ID 
 	  *
 	  * @param string|integer $input
 	  * @return boolean  
-	  * @todo Consider changing name to is_valid_id
 	  *
 	  */ 
-	function is_idish($input)
+	function is_valid_id($input)
 	{
 		return (filter_var($input, FILTER_VALIDATE_INT, array('min_range' => 1)) !== FALSE);
 	}

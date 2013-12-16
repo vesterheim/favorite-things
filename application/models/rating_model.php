@@ -85,7 +85,7 @@ class Rating_model extends MY_Model
      */
     public function add($artifact_id, $rating, $ip_address, $previous_id=FALSE) 
     {
-        if (is_idish($artifact_id) === FALSE)
+        if (is_valid_id($artifact_id) === FALSE)
         {
             throw new InvalidArgumentException('Rating_model::add() expects an integer for the artifact_id parameter.   Input was: ' . $artifact_id);
         } 
@@ -97,7 +97,7 @@ class Rating_model extends MY_Model
         {
             throw new InvalidArgumentException('Rating_model::add() expects a valid IP address ip_address parameter.   Input was: ' . $ip_address);
         }         
-        if ($previous_id !== FALSE && is_idish($previous_id) === FALSE)
+        if ($previous_id !== FALSE && is_valid_id($previous_id) === FALSE)
         {
             throw new InvalidArgumentException('Rating_model::add() expects an integer for the previous_id parameter.   Input was: ' . $previous_id);
         } 
@@ -134,7 +134,7 @@ class Rating_model extends MY_Model
      */
     public function update($id, $artifact_id, $rating, $ip_address) 
     {
-        if (is_idish($id) === FALSE)
+        if (is_valid_id($id) === FALSE)
         {
             throw new InvalidArgumentException('Rating_model::update() expects an integer for the id parameter.   Input was: ' . $id);
         } 
