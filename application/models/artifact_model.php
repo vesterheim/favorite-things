@@ -244,6 +244,39 @@ EOQ;
 
 
     /**
+      * Get Artifact name
+      * 
+      *
+      * @access public 
+      * @param int $id   
+      * @return string
+      */
+    public function name($id) 
+    {   
+        if (is_valid_id($id) === FALSE)
+        {
+            throw new InvalidArgumentException('Artifact_model::name() expects an integer for the id parameter.  Input was: ' . $id);
+        }   
+        $data = FALSE;      
+        $this->db->select('name');
+        $this->db->from($this->table());
+        $this->db->where('status', 1);
+        $this->db->where('id', clean_id($id));
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0)
+        {
+            foreach ($query->result_array() as $row)
+            {
+                $data = $row['name'];
+            }   
+        }   
+        $query->free_result();                      
+
+        return $data;
+    }
+
+    /**
       * Increment views by 1
       * Pass TRUE as second $unique param to track unique views
       *
@@ -256,7 +289,7 @@ EOQ;
     {
         if (is_valid_id($id) === FALSE)
         {
-            throw new InvalidArgumentException('Artifact_model::update_views() expects an integer for the artifact_id parameter.  Input was: ' . $id);
+            throw new InvalidArgumentException('Artifact_model::update_views() expects an integer for the id parameter.  Input was: ' . $id);
         } 
         if ($unique !== FALSE)
         {
