@@ -15,6 +15,7 @@ class Ratings extends CI_Controller {
     {
     	parent::__construct();
 
+    	$this->load->model('artifact_model');
     	$this->load->model('rating_model');
     	$this->load->model('visitor_model');
 		$this->load->library('form_validation');
@@ -60,7 +61,12 @@ class Ratings extends CI_Controller {
 		$rating_id = $this->rating_model->add($artifact_id, $rating, $ip_address);
 		$this->visitor_model->set_rating($artifact_id, $rating_id, $rating);
 
-		echo "ratings.store";
+		if ($this->visitor_model->get_rated_count() < $this->artifact_model->count())
+		{
+			$artifacts_rated = $this->visitor_model->get_rated();
+			redirect('/artifacts/' . $this->artifact_model->get_random_id($artifacts_rated));			
+		}
+		redirect('/artifacts');
 	}
 
 
@@ -98,6 +104,11 @@ class Ratings extends CI_Controller {
 		$rating_id = $this->rating_model->update($previous_id, $artifact_id, $rating, $ip_address);
 		$this->visitor_model->set_rating($artifact_id, $rating_id, $rating);
 
-		echo "ratings.update";
+		if ($this->visitor_model->get_rated_count() < $this->artifact_model->count())
+		{
+			$artifacts_rated = $this->visitor_model->get_rated();
+			redirect('/artifacts/' . $this->artifact_model->get_random_id($artifacts_rated));			
+		}
+		redirect('/artifacts');
 	}
 }
