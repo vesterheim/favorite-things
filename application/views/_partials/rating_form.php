@@ -4,6 +4,7 @@ $this->load->helper('form');
 
 echo form_open($form_action, array('class' => 'form-inline'));
 echo form_fieldset($form_legend);
+echo "<p><small>$form_directions</small></p>";
 echo '<div class="text-center">';
 for ($i = 1; $i <= 10; $i++) 
 {
@@ -28,6 +29,7 @@ echo "<div class=\"text-danger\">$validation_errors</div>";
 echo '<div style="margin-top:7px;margin-bottom:7px;">';
 $submit = array(
 	'class' => 'btn btn-primary',
+	'data-loading-text' => 'Working on it...',
 	'name' => 'submit'
 );
 echo form_submit($submit,

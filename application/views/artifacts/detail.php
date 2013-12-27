@@ -1,10 +1,9 @@
       <div class="page-header">     
         <h1><?php echo $artifact['name']; ?> <small>[<?php echo $artifact['identifier']; ?>]</small></h1>  
       </div>
-      <?php $this->load->view('_partials/alerts'); ?>
       <div class="row">
 
-        <div class="col-xs-12 col-sm-9 col-md-6 col-lg-6">
+        <div class="col-xs-12  col-sm-10 col-sm-offset-1  col-md-6 col-md-offset-0  col-lg-6">
           <figure>
 <?php if (array_key_exists('image', $artifact) === TRUE):?>
   <?php switch (count($artifact['image'])):
@@ -39,7 +38,7 @@
           </figure>
         </div>      
 
-        <div class="col-xs-12 col-sm-9 col-md-6 col-lg-6">
+        <div class="col-xs-12  col-sm-10 col-sm-offset-1  col-md-6 col-md-offset-0  col-lg-6">
           <div class="well well-small">
 <?php $this->load->view('_partials/rating_form'); ?>
             <div class="row">
@@ -48,10 +47,12 @@
               <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3 muted">Votes: <?php echo $artifact['votes']; ?></div>
               <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3 muted">Views: <?php echo $artifact['views']; ?></div>
             </div>                 	 	
-          </div> 
+          </div>   
         </div>  
-
-        <div class="col-xs-12 col-sm-9  col-md-6 col-lg-6">
+        <div class="col-xs-12  col-sm-10 col-sm-offset-1  col-md-6 col-md-offset-0  col-lg-6">
+<?php $this->load->view('_partials/progress'); ?>        
+        </div> 
+        <div class="col-xs-12  col-sm-10 col-sm-offset-1  col-md-6 col-md-offset-0  col-lg-6">
           <?php echo $artifact['description']; ?>
           <dl class="artifact-details">
             <dt>Date</dt>

@@ -9,13 +9,13 @@
         <h1><?php echo $title; ?></h1>
         <?php if (isset($title_messsage) === TRUE) { echo $title_messsage; } ?>
       </div>
-
+<?php $this->load->view('_partials/progress'); ?> 
       <div class="row">
 <?php foreach ($artifacts as $index => $artifact): ?>
 <?php $index++ ?>
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">  
           <a class="thumbnail" href="<?php echo site_url(array('artifacts', $artifact['id'])); ?>" style="min-height:350px;padding-bottom:6ex;position:relative;">
-            <img alt="" class="img-responsive" src="/assets/img/artifacts/<?php echo $artifact['image']; ?>">
+            <img alt="" class="img-responsive" src="/assets/img/thumbnails/<?php echo $artifact['image']; ?>">
             <strong><?php echo $artifact['name']; ?></strong><br /><small>[<?php echo $artifact['identifier']; ?>]</small>
             <strong class="badge badge-info" style="position:absolute; top:1.25ex; left:.75em;">#<?php echo $artifact['rank']; ?></strong>
             <dl class="dl-horizontal">    
