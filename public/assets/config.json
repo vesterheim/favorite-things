@@ -1,0 +1,36 @@
+{
+  "vars": {
+    "@screen-xs-min": "532px",
+    "@screen-sm-min": "586px",
+    "@container-sm": "((671px + @grid-gutter-width))",
+    "@grid-float-breakpoint": "@screen-xs-min"
+  },
+  "css": [
+    "print.less",
+    "type.less",
+    "grid.less",
+    "forms.less",
+    "buttons.less",
+    "glyphicons.less",
+    "navs.less",
+    "navbar.less",
+    "pagination.less",
+    "badges.less",
+    "thumbnails.less",
+    "alerts.less",
+    "progress-bars.less",
+    "panels.less",
+    "wells.less",
+    "close.less",
+    "carousel.less",
+    "utilities.less",
+    "responsive-utilities.less",
+    "component-animations.less"
+  ],
+  "js": [
+    "alert.js",
+    "carousel.js",
+    "collapse.js",
+    "transition.js"
+  ]
+}
