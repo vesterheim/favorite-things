@@ -64,6 +64,10 @@ class Db extends CI_Controller
         $this->load->library('seeds/images_seeder');
         $this->images_seeder->run($this->image_model);
 
+        $this->load->model('thumbnail_model');
+        $this->load->library('seeds/thumbnails_seeder');
+        $this->thumbnails_seeder->run($this->thumbnail_model);
+
         $this->load->model('artifact_model');
         $this->load->library('seeds/artifacts_seeder');
         $this->artifacts_seeder->run($this->artifact_model);

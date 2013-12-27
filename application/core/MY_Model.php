@@ -58,9 +58,11 @@ class MY_Model extends CI_Model
 
         $this->load->helper('database');
 
-		$this->_artifact_table = config_item('artifact_table');
-		$this->_image_table    = config_item('image_table');
-		$this->_rating_table   = config_item('rating_table');
+        $this->_artifact_table  = config_item('artifact_table');
+        $this->_image_table     = config_item('image_table');
+        $this->_thumbnail_table = config_item('thumbnail_table');
+        $this->_rating_table    = config_item('rating_table');
+
         
 		$this->_fetch_table();	
     }	
@@ -220,6 +222,17 @@ class MY_Model extends CI_Model
         return $this->_rating_table;
     }     
 
+
+
+    /**
+     * Getter for the thumbnails table
+     * 
+     * @return string      
+     */
+    public function thumbnail_table()
+    {
+        return $this->_thumbnail_table;
+    }   
 
     /**
      * Run validation on the passed data
