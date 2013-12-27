@@ -79,6 +79,6 @@ if ( ! function_exists('is_valid_rating'))
 	  */ 
 	function is_valid_rating($input)
 	{
-		return (filter_var($input, FILTER_VALIDATE_INT, array('min_range' => 1, 'max_range' => 10)) !== FALSE);
+		return (filter_var($input, FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 10))) !== FALSE);
 	}
 }
