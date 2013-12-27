@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Artifacts extends CI_Controller {
+class Artifacts extends MY_Controller {
 
 	/**
 	 * Artifacts controller
@@ -14,15 +14,12 @@ class Artifacts extends CI_Controller {
 	public function __construct()
     {
     	parent::__construct();
-    	$this->load->model('alert_model');
-    	$this->load->model('artifact_model');
-    	$this->load->model('visitor_model');
-    	$this->load->helper('controller');
 
     	$this->load->library('pagination');
+
     	$this->pagination_config = array(
-			'base_url'       => 'http://ci.favoritethings.vesterheim.dev/artifacts/page',
-			'total_rows'     => $this->artifact_model->count(),
+			'base_url'       => '/artifacts/page',
+			'total_rows'     => $this->_artifact_count(),
 			'per_page'       => 12,
 			'num_links'      => 20,
 			'full_tag_open'  => '<ul class="pagination">',
@@ -37,13 +34,7 @@ class Artifacts extends CI_Controller {
 			'cur_tag_close'  => '<span class="sr-only">(current)</span></span></li>',
 			'num_tag_open'   => '<li>',
 			'num_tag_close'  => '</li>'
-    	);    	
-
-    	/** 
-    	 * Display profiler everywhere save the production
-    	 * environment.
-    	 */
-    	$this->output->enable_profiler(ENVIRONMENT !== 'production');
+    	);
     }
 
 
@@ -55,16 +46,52 @@ class Artifacts extends CI_Controller {
 	 */	
 	public function index($offset=0)
 	{
-		$data['artifacts'] = $this->artifact_model->get_all($this->pagination_config['per_page'], $offset);
+		if (($clean_offset = filter_var($offset, FILTER_VALIDATE_INT, array('min_range' => 0))) === FALSE)
+		{
+			show_404();
+		}
+
+		$cache_id = 'artifact_model__get_all__' . $this->pagination_config['per_page'] . '__' . $clean_offset;
+		if (($data['artifacts'] = $this->zf_cache->load($cache_id)) === FALSE)
+		{
+			$data['artifacts'] = $this->artifact_model->get_all($this->pagination_config['per_page'], $offset);
+			$this->zf_cache->save($data['artifacts'], $cache_id, array('artifactsIndex', 'containsRatings'));
+		}	
 
 		$data['alerts'] = $this->alert_model->get();
 
-		$this->pagination->initialize($this->pagination_config, $this->pagination_config['per_page'], $this->uri->segment(3));
+		$this->pagination->initialize($this->pagination_config, $this->pagination_config['per_page'], $clean_offset);
 
 		$data['title'] = 'Current Artifact Rankings';
-		$data['title_messsage'] = '<div>50 artifacts were nominated. Your votes decide which ones are exbihibited and which ones remain in storage.</div>';
+		$data['title_messsage'] = '<div>50 artifacts were nominated. Your ratings decide which ones are exhibited and which ones remain in storage.</div>';
 		$data['subview'] = 'artifacts/browse';
 		$data['current_navigation'] = 'browse';
+		$data['display_progress'] = FALSE;
+
+		if ($this->visitor_model->get_rated_count() > 0)
+		{
+			$data['display_progress'] = TRUE;
+			$data['progress_context'] = '';
+			$data['progress_panel_context'] = 'panel-info';
+			$data['progress_rated'] = $this->visitor_model->get_rated_count();
+			$data['progress_total'] = $this->_artifact_count();
+			$data['progress_percent'] = $data['progress_rated'] / $data['progress_total'] * 100;
+			if ($data['progress_percent'] === 100 )
+			{
+				$data['progress_context'] = 'progress-bar-success';
+				$data['progress_panel_context'] = 'panel-success';
+			}
+			elseif ($data['progress_percent'] < 34 )
+			{
+				$data['progress_context'] = 'progress-bar-warning';
+				$data['progress_panel_context'] = 'panel-warning';
+			}	
+			elseif ($data['progress_percent'] < 66 )
+			{
+				$data['progress_context'] = 'progress-bar-info';
+				$data['progress_panel_context'] = 'panel-info';
+			}			
+		}
 
 		$this->load->view('layouts/master', $data);
 	}
@@ -82,11 +109,26 @@ class Artifacts extends CI_Controller {
 	 */
 	public function show($id)
 	{
-		$data['artifact'] = $this->artifact_model->get($id);
+		if($this->_is_actual_id($id) === FALSE)
+		{
+			show_404();
+		}
+
+		$clean_id = clean_id($id);
+		$cache_id = 'artifact_model__get__' . $clean_id;
+		if (($data['artifact'] = $this->zf_cache->load($cache_id)) === FALSE)
+		{
+			$data['artifact'] = $this->artifact_model->get($id);
+			$this->zf_cache->save($data['artifact'], $cache_id, array('artifactsShow', 'containsRatings'));
+		}
+		
+		if (empty($data['artifact']) === TRUE)
+		{
+			show_404();
+		}
 
 		$data['alerts'] = $this->alert_model->get();
 
-// probably need to check for existence of artifact
 		$data['subview'] = 'artifacts/detail';
 		$data['current_navigation'] = 'browse';
 
@@ -94,9 +136,11 @@ class Artifacts extends CI_Controller {
 
 		$unique_view = FALSE;
 		$data['rating'] = FALSE;
+		$data['display_progress'] = FALSE;
 
 		$data['form_action'] = "artifacts/$id/ratings";
-		$data['form_legend'] = 'Rate this artifact';
+		$data['form_legend'] = 'Rate this artifact'; 
+		$data['form_directions'] = '1) Choose a number.  2) Submit with <em>\'Rate It!\'</em> button.';
 		$data['form_submit'] = 'Rate it!';
 
 
@@ -112,7 +156,7 @@ class Artifacts extends CI_Controller {
 			$data['form_action'] .= '/' . $this->visitor_model->get_rating_id($id);
 			$data['rating'] = $this->visitor_model->get_rating($id);
 			$data['form_legend'] = "You rated this artifact {$data['rating']} out of 10.";
-			$data['form_submit'] = 'Change Rating';
+			$data['form_submit'] = 'Change Rating';			
 		}
 		/**
 		 * If there were validation errors, we may have been 
@@ -133,22 +177,32 @@ class Artifacts extends CI_Controller {
 		{
 			insert_into__POST(array('rating' => $data['rating']));
 		}
-		
 
+		if ($this->visitor_model->get_rated_count() > 0)
+		{
+			$data['display_progress'] = TRUE;
+			$data['progress_context'] = '';
+			$data['progress_panel_context'] = 'panel-info';
+			$data['progress_rated'] = $this->visitor_model->get_rated_count();
+			$data['progress_total'] = $this->_artifact_count();
+			$data['progress_percent'] = $data['progress_rated'] / $data['progress_total'] * 100;
+			if ($data['progress_percent'] === 100 )
+			{
+				$data['progress_context'] = 'progress-bar-success';
+				$data['progress_panel_context'] = 'panel-success';
+			}
+			elseif ($data['progress_percent'] < 34 )
+			{
+				$data['progress_context'] = 'progress-bar-warning';
+				$data['progress_panel_context'] = 'panel-warning';
+			}	
+			elseif ($data['progress_percent'] < 66 )
+			{
+				$data['progress_context'] = 'progress-bar-info';
+				$data['progress_panel_context'] = 'panel-info';
+			}			
+		}
 
 		$this->load->view('layouts/master', $data);				
-	}
-
-
-	/**
-	 * Redirect to a random artifact 
-	 *
-	 * @return Redirect
-	 * @todo consider option to simply return artifact info
-	 * @todo consider option to simply return artifact ID
-	 */
-	public function random()
-	{
-
 	}
 }

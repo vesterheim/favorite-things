@@ -93,6 +93,14 @@ class Artifact_model extends MY_Model
         return $this->db->count_all_results();
     }
 
+    public function is_actual_id($id) 
+    {   
+        $this->db->from($this->table());
+        $this->db->where('status', 1);
+        $this->db->where('id', $id);
+        $this->db->limit(1);
+        return (bool) $this->db->count_all_results();
+   }
 
     /**
       * Get Artifact record by ID
@@ -142,13 +150,12 @@ CROSS JOIN
      WHERE $artifacts.status = 1
      GROUP BY $artifacts.id) AS averages) AS averages
 WHERE $artifacts.status = 1
-AND $artifacts.id = %d
+AND $artifacts.id = ?
 GROUP BY $artifacts.id
 LIMIT 1
 EOQ;
         $data = array();
-        $sql = sprintf($sql, clean_id($id));
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, array(clean_id($id)));
         if ($query->num_rows() > 0)
         {
             foreach ($query->result_array() as $row)
@@ -181,27 +188,26 @@ EOQ;
         $data = array();
 
         $artifacts = $this->artifact_table();
-        $images = $this->image_table();
         $ratings = $this->rating_table();
+        $thumbnails = $this->thumbnail_table();
 
-        $pagination = '';
+        $pagination['sql'] = '';
+        $pagination['bindings'] = array();
         if ($limit !== FALSE && filter_var($limit, FILTER_VALIDATE_INT, array('min_range' => 1)) !== FALSE)
         {
-            $pagination = 'LIMIT ' . abs(intval($limit));
+            $pagination['sql'] = 'LIMIT ? ';
+            $pagination['bindings'][] = abs(intval($limit));
             if (filter_var($offset, FILTER_VALIDATE_INT, array('min_range' => 0)) !== FALSE)
             {
-                $pagination .= ' OFFSET ' . abs(intval($offset));
+                $pagination['sql'] .= ' OFFSET ?';
+                $pagination['bindings'][] = abs(intval($offset));
             }
         }
-
         $sql = <<<EOQ
 SELECT  $artifacts.id,
         $artifacts.name,
         $artifacts.identifier,
-    (SELECT image
-     FROM $images
-     WHERE artifact_id = $artifacts.id
-     ORDER BY sort_order LIMIT 1) AS image,
+        $thumbnails.image as image,
         FIND_IN_SET(AVG($ratings.rating), averages.average_list) AS rank,
         AVG($ratings.rating) AS average,
         STDDEV_POP($ratings.rating) AS deviation,
@@ -209,6 +215,8 @@ SELECT  $artifacts.id,
         COUNT($ratings.rating) AS votes,
         $artifacts.views
 FROM $artifacts
+LEFT JOIN $thumbnails 
+        ON $artifacts.id = $thumbnails.artifact_id
 LEFT JOIN $ratings
         ON $artifacts.id = $ratings.artifact_id
         AND $ratings.status = 1 
@@ -225,10 +233,9 @@ CROSS JOIN
 WHERE $artifacts.status = 1
 GROUP BY $artifacts.id
 ORDER BY rank
-$pagination
+{$pagination['sql']}
 EOQ;
-
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $pagination['bindings']);
         if ($query->num_rows() > 0)
         {
             foreach ($query->result_array() as $row)
