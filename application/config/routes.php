@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = 'artifacts/index';
 $route['404_override'] = '';
 $route['artifacts'] = 'artifacts/index';
 $route['artifacts/page'] = 'artifacts/redirect_to_index';
